@@ -8,7 +8,8 @@ const Navbar = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    const toggleMenu = () => {
+    const toggleMenu = (e) => {
+       e.stopPropagation();
         setIsMenuOpen(!isMenuOpen)
     }
   return (
@@ -46,12 +47,37 @@ const Navbar = () => {
 
 
 
-         <ul className={isMenuOpen ? 'flex flex-col gap-y-20  gap-8 lg:hidden  absolute top-16 left-0 right-0 bg-white  p-10' : 'hidden'}>
-            <li><a className='font-semibold tracking-wider text-orange-600 '  href="/">Home</a></li>
-            <li><a className='font-semibold tracking-wider text-zinc-800 hover:text-orange-600 ' href="/about">About</a></li>
-            <li><a className='font-semibold tracking-wider text-zinc-800 hover:text-orange-600 ' href="/Process">Process</a></li>
-            <li><a className='font-semibold tracking-wider text-zinc-800 hover:text-orange-600 ' href="/contact">Contact</a></li>
-        </ul>
+         <ul
+  className={`lg:hidden absolute top-16 left-0 right-0 bg-white p-10
+    flex flex-col gap-8
+    transform transition-all duration-500 ease-in-out
+    ${
+      isMenuOpen
+        ? 'opacity-100 translate-y-0 visible'
+        : 'opacity-0 -translate-y-5 invisible'
+    }`}
+>
+  <li>
+    <a className="font-semibold tracking-wider text-orange-600" href="/">
+      Home
+    </a>
+  </li>
+  <li>
+    <a className="font-semibold tracking-wider text-zinc-800 hover:text-orange-600 transition-colors duration-300" href="/about">
+      About
+    </a>
+  </li>
+  <li>
+    <a className="font-semibold tracking-wider text-zinc-800 hover:text-orange-600 transition-colors duration-300" href="/process">
+      Process
+    </a>
+  </li>
+  <li>
+    <a className="font-semibold tracking-wider text-zinc-800 hover:text-orange-600 transition-colors duration-300" href="/contact">
+      Contact
+    </a>
+  </li>
+</ul>
 
     </nav>
     </div>
