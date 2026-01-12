@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaHeart } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navbar = () => {
+const Navbar = () => { 
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen)
+    }
   return (
     <div>
     <nav className='flex max-w-[1200px] md:h-[14vh]  h-[12vh] mx-auto justify-around items-center fixed top-0 left-0 right-0  bg-white  z-50  '>
@@ -35,8 +41,17 @@ const Navbar = () => {
             </a>
 
 
-            <a href=""><GiHamburgerMenu className="text-black text-2xl md:hidden lg:hidden " /></a>
+            <a href=""><GiHamburgerMenu className="text-black text-2xl md:hidden lg:hidden " onClick={toggleMenu} /></a>
         </div>
+
+
+
+         <ul className={isMenuOpen ? 'flex flex-col gap-y-20  gap-8 lg:hidden  absolute top-16 left-0 right-0 bg-white  p-10' : 'hidden'}>
+            <li><a className='font-semibold tracking-wider text-orange-600 '  href="/">Home</a></li>
+            <li><a className='font-semibold tracking-wider text-zinc-800 hover:text-orange-600 ' href="/about">About</a></li>
+            <li><a className='font-semibold tracking-wider text-zinc-800 hover:text-orange-600 ' href="/Process">Process</a></li>
+            <li><a className='font-semibold tracking-wider text-zinc-800 hover:text-orange-600 ' href="/contact">Contact</a></li>
+        </ul>
 
     </nav>
     </div>
